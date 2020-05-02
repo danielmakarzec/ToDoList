@@ -2,6 +2,7 @@
 const todoInput = document.querySelector('.todo-input')
 const todoButton = document.querySelector('.todo-button')
 const todoList = document.querySelector('.todo-list')
+const filterOption = document.querySelector('.todo-filter')
 
 // FUNCTIONS
 const addTodo = e => {
@@ -43,7 +44,36 @@ const handleClick = e => {
   }
 }
 
+const handleFilter = e => {
+  const todos = new Array(...todoList.childNodes);
+  todos.shift();
+  todos.forEach(function(todo) {
+      switch (e.target.value) {
+        case 'all':
+          todo.style.display = "flex";
+          break;
+        case 'done':
+          if (todo.classList.contains('checked')) {
+            todo.style.display = 'flex';
+          } else {
+            todo.style.display = 'none';
+          }
+          break;
+        case 'pending':
+          if (todo.classList.contains('checked')) {
+            todo.style.display = 'none';
+          } else {
+            todo.style.display = 'flex';
+          }
+          break;
+      }
+  });
+}
+
+
+
 
 // EVENT LISTENERS
 todoButton.addEventListener("click", addTodo);
 todoList.addEventListener('click', handleClick);
+filterOption.addEventListener('click', handleFilter)
