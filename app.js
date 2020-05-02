@@ -3,6 +3,7 @@ const todoInput = document.querySelector('.todo-input')
 const todoButton = document.querySelector('.todo-button')
 const todoList = document.querySelector('.todo-list')
 const filterOption = document.querySelector('.todo-filter')
+const counter = document.getElementById('counter-value')
 
 // FUNCTIONS
 const addTodo = e => {
@@ -78,10 +79,12 @@ const saveLocalTodos = todo => {
   } else {
     todos = JSON.parse(localStorage.getItem('todos'));
   }
-
   todos.push(todo);
   localStorage.setItem('todos', JSON.stringify(todos));
+  // Update counter
+  updateCounter(todos);
 }
+
 
 const getTodos = () => {
   let todos;
@@ -110,6 +113,8 @@ const getTodos = () => {
     todoDiv.appendChild(trashButton);
     // display
     todoList.appendChild(todoDiv);
+    // Update counter
+    updateCounter(todos);
   })
 }
 
@@ -126,8 +131,13 @@ const removeLocalTodos = todo => {
   const todoIndex = todo.children[0].innerText;
   todos.splice(todos.indexOf(todoIndex), 1);
   localStorage.setItem('todos', JSON.stringify(todos));
+  // Update counter
+  updateCounter(todos);
 }
 
+const updateCounter = list => {
+  counter.innerHTML = list.length;
+}
 
 // EVENT LISTENERS
 todoButton.addEventListener("click", addTodo);
