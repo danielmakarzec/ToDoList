@@ -31,5 +31,19 @@ const addTodo = e => {
   todoInput.value = '';
 }
 
+const handleClick = e => {
+  const item = e.target;
+  const itemParent = item.parentElement;
+
+  if (item.classList[0] == 'trash-btn') {
+    removeLocalTodos(itemParent);
+    itemParent.remove();
+  } else {
+    itemParent.classList.toggle('checked');
+  }
+}
+
+
 // EVENT LISTENERS
 todoButton.addEventListener("click", addTodo);
+todoList.addEventListener('click', handleClick);
