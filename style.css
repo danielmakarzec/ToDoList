@@ -121,3 +121,47 @@ form button:hover{
 .todo{
   pointer-events: auto;
 }
+
+/*  selection  */
+select{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  webkit-appearance: none;
+  outline: none;
+  border: none;
+
+  padding: 1rem;
+  color: rgba(0,0,0,.6);
+  width: 10rem;
+  cursor: pointer;
+}
+
+.select{
+  margin: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+.todo-filter option{
+  /*font-size: 1.5em;*/
+  margin: 1em 0;
+}
+.todo-filter{
+  font-size: 1em;
+}
+.select::after{
+  content: '\25BC';
+  position: absolute;
+  background: rgba(0,0,0,.6);
+  top: 0;
+  right: 0;
+  padding: 1.02rem;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.select:hover::after{
+  background: #ddd;
+  color: rgba(0,0,0,.6);
+}
